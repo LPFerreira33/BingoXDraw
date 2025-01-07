@@ -1,0 +1,6 @@
+ipykernel
+numpy
+python-dotenv
+pysimplegui==4.60.5.0
+pygame==2.6.1
+azure-cognitiveservices-speech==1.41.1
