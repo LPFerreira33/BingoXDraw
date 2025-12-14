@@ -19,3 +19,6 @@ env/
 .venv/
 *.pyc
 __pycache__/
+
+# Custom ignore rules
+.coverage
