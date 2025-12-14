@@ -130,12 +130,13 @@ if __name__ == "__main__":
             try:
                 # Convert input to an integer and add to bingo numbers
                 number_to_add = int(values["-AddNumber-"])
-                add_number(bingo_numbers, number_to_add)
-                # Update GUI display after adding a number
-                window["-BingoNumbers-"].update(", ".join(map(str, bingo_numbers)))
-                window["-WithdrawnNumbers-"].update(", ".join(map(str, withdrawn_numbers)))
-                # Display a popup message for the added number
-                sg.popup(f"Added number: {number_to_add}")
+                success, message = add_number(bingo_numbers, withdrawn_numbers, number_to_add)
+                if success:
+                    # Update GUI display after adding a number
+                    window["-BingoNumbers-"].update(", ".join(map(str, bingo_numbers)))
+                    window["-WithdrawnNumbers-"].update(", ".join(map(str, withdrawn_numbers)))
+                # Display a popup message for the result
+                sg.popup(message)
             except ValueError:
                 sg.popup("Invalid input. Please enter a valid number.")
         elif event == "Create Bingo Numbers":

@@ -92,19 +92,25 @@ def cancel_withdraw(bingo_numbers: List[int], withdrawn_numbers: List[int]) -> O
         return None
 
 
-def add_number(bingo_numbers: List[int], number: int) -> None:
+def add_number(bingo_numbers: List[int], withdrawn_numbers: List[int], number: int) -> Tuple[bool, str]:
     """
     Add a number to the available bingo numbers and sort the list.
 
     Parameters:
     - bingo_numbers (List[int]): List of available bingo numbers.
+    - withdrawn_numbers (List[int]): List of withdrawn bingo numbers.
     - number (int): The number to be added to the list.
 
     Returns:
-    None
+    Tuple[bool, str]: A tuple containing a boolean indicating success and a message.
     """
+    if number in bingo_numbers:
+        return False, f"Number {number} is already in the available numbers list."
+    if number in withdrawn_numbers:
+        return False, f"Number {number} is already in the withdrawn numbers list."
     bingo_numbers.append(number)
     bingo_numbers.sort()
+    return True, f"Number {number} successfully added."
 
 
 def check_bingo(numbers_to_check: List[int], withdrawn_numbers: List[int]) -> Tuple[List[str], bool]:
