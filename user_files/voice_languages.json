@@ -1,14 +1,14 @@
 {
-    "Português (Portugal)": {"voice": "pt-PT-DuarteNeural", "text": "Saiu o número: "},
-    "English (US)": {"voice": "en-US-AvaMultilingualNeural", "text": "Withdrawn number: "},
-    "Español (España)": {"voice": "es-ES-AlvaroNeural", "text": "Número extraído: "},
-    "Français (France)": {"voice": "fr-FR-DeniseNeural", "text": "Numéro tiré : "},
-    "Deutsch (Deutschland)": {"voice": "de-DE-ConradNeural", "text": "Gezogene Nummer: "},
-    "Italiano (Italia)": {"voice": "it-IT-BenignoNeural", "text": "Numero estratto: "},
-    "日本語 (日本)": {"voice": "ja-JP-NanamiNeural", "text": "抽出された番号: "},
-    "中文 (简体中文)": {"voice": "zh-CN-XiaoxiaoNeural", "text": "取出的号码: "},
-    "Русский (Россия)": {"voice": "ru-RU-DmitryNeural", "text": "Выпавший номер: "},
-    "한국어 (대한민국)": {"voice": "ko-KR-SunHiNeural", "text": "추첨된 번호: "},
-    "العربية (المملكة العربية السعودية)": {"voice": "ar-SA-HamedNeural", "text": "الرقم المسحوب: "},
-    "हिंदी (भारत)": {"voice": "hi-IN-MadhurNeural", "text": "निकाला गया नंबर: "}
+    "Português (Portugal)": {"voice": "pt-PT-DuarteNeural", "text": "Saiu o número: ", "language_code": "pt"},
+    "English (US)": {"voice": "en-US-AvaMultilingualNeural", "text": "Withdrawn number: ", "language_code": "en"},
+    "Español (España)": {"voice": "es-ES-AlvaroNeural", "text": "Número extraído: ", "language_code": "es"},
+    "Français (France)": {"voice": "fr-FR-DeniseNeural", "text": "Numéro tiré : ", "language_code": "fr"},
+    "Deutsch (Deutschland)": {"voice": "de-DE-ConradNeural", "text": "Gezogene Nummer: ", "language_code": "de"},
+    "Italiano (Italia)": {"voice": "it-IT-BenignoNeural", "text": "Numero estratto: ", "language_code": "it"},
+    "日本語 (日本)": {"voice": "ja-JP-NanamiNeural", "text": "抽出された番号: ", "language_code": "ja"},
+    "中文 (简体中文)": {"voice": "zh-CN-XiaoxiaoNeural", "text": "取出的号码: ", "language_code": "zh"},
+    "Русский (Россия)": {"voice": "ru-RU-DmitryNeural", "text": "Выпавший номер: ", "language_code": "ru"},
+    "한국어 (대한공화국)": {"voice": "ko-KR-SunHiNeural", "text": "추첨된 번호: ", "language_code": "ko"},
+    "العربية (المملكة العربية السعودية)": {"voice": "ar-SA-HamedNeural", "text": "الرقم المسحوب: ", "language_code": "ar"},
+    "हिंदी (भारत)": {"voice": "hi-IN-MadhurNeural", "text": "निकाला गया नंबर: ", "language_code": "hi"}
 }

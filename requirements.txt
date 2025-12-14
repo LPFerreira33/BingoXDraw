@@ -1,6 +1,7 @@
 ipykernel
 numpy
 python-dotenv
-pysimplegui==4.60.5.0
+FreeSimpleGUI==5.2.0.post1
 pygame==2.6.1
 azure-cognitiveservices-speech==1.41.1
+gTTS==2.4.0

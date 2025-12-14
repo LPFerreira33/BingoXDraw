@@ -1,15 +1,16 @@
 import random
 import pygame
-import PySimpleGUI as sg
+import FreeSimpleGUI as sg
 import azure.cognitiveservices.speech as speechsdk
 
-from bingo_utils import save_numbers_to_file, load_numbers_from_file, withdraw_number, cancel_withdraw, add_number
-from bingo_utils import check_bingo, initialize_speech_service
+from bingo_utils import (save_numbers_to_file, load_numbers_from_file, withdraw_number, 
+                         cancel_withdraw, add_number, check_bingo, initialize_speech_service, 
+                         speak_local_tts, speak_google_tts)
 
 if __name__ == "__main__":
-    # Initialize speech service for additional voice features 
-    # Note: If no information about about Azure Speech Voices, program will run without voices
+    # Initialize speech service for additional voice features, or Google TTS / local TTS can be used
     speech_config, audio_config, voice_languages = initialize_speech_service(dotenv_path="user_files/secrets.env")
+    use_azure = speech_config is not None and audio_config is not None  # Determine if Azure is available
 
     # Set the theme for the GUI
     sg.theme("DarkGrey1")
@@ -37,6 +38,10 @@ if __name__ == "__main__":
     layout = [
         [sg.Text("BingoXDraw", font=("Helvetica", 20), justification='center')],
         [sg.Text("Let's play some bingo!", font=("Helvetica", 14))],
+        [sg.Text("Text-to-Speech Provider:", font=("Helvetica", 12)),
+            sg.Radio("Azure Speech", "-TTSProvider-", default=(use_azure and True or False), key="-UseTTSAzure-", disabled=(not use_azure)),
+            sg.Radio("Google TTS", "-TTSProvider-", default=(not use_azure or False), key="-UseTTSGoogle-"),
+            sg.Radio("Local (eSpeak)", "-TTSProvider-", key="-UseTTSLocal-")],
         [sg.Text("Choose Voice Language:", font=("Helvetica", 12)),
             sg.Combo(list(voice_languages.keys()), default_value="Português (Portugal)", key="-VoiceLanguage-", readonly=True)],
         [sg.Text("Enter Max Bingo Number: ", font=("Helvetica", 12)), 
@@ -74,7 +79,6 @@ if __name__ == "__main__":
             # Retrieve the selected language information
             language_info = voice_languages[values["-VoiceLanguage-"]]
             withdraw_text = language_info["text"]
-            speech_config.speech_synthesis_voice_name = language_info['voice']
 
             # Withdraw a number from the available bingo numbers and add it to the withdrawn list
             withdrawn_number = withdraw_number(bingo_numbers, withdrawn_numbers)
@@ -82,9 +86,20 @@ if __name__ == "__main__":
             # Generate the speech text for the withdrawn number
             withdrawn_number_text = f"{withdraw_text} {withdrawn_number}!"
 
-            # Use the speech synthesizer to read the generated text aloud
-            speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
-            speech_synthesizer.speak_text_async(withdrawn_number_text).get()
+            # Use the selected TTS provider
+            if values["-UseTTSAzure-"] and use_azure:
+                # Use Azure Speech TTS (requires internet)
+                speech_config.speech_synthesis_voice_name = language_info['voice']
+                speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
+                speech_synthesizer.speak_text_async(withdrawn_number_text).get()
+            elif values["-UseTTSGoogle-"]:
+                # Use Google TTS (requires internet)
+                lang_code = language_info.get("language_code", "en")
+                speak_google_tts(withdrawn_number_text, language=lang_code)
+            elif values["-UseTTSLocal-"]:
+                # Use eSpeak for local/offline TTS
+                lang_code = language_info.get("language_code", "en")
+                speak_local_tts(withdrawn_number_text, language=lang_code)
 
             if withdrawn_number is not None:
                 # Update GUI display after withdrawal
