@@ -164,10 +164,7 @@ def speak_local_tts(text: str, language: str = "en") -> None:
         pygame.mixer.music.play()
         
         # Clean up temporary file
-        try:
-            os.remove(tmp_path)
-        except:
-            pass
+        os.remove(tmp_path)
                 
     except FileNotFoundError:
         print("Error: espeak or espeak-ng not found.")
@@ -212,10 +209,7 @@ def speak_google_tts(text: str, language: str = "en") -> None:
         pygame.mixer.music.play()
         
         # Clean up temporary file
-        try:
-            os.remove(tmp_path)
-        except:
-            pass
+        os.remove(tmp_path)
                 
     except Exception as e:
         print(f"Error with gTTS: {e}")

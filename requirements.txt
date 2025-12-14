@@ -5,3 +5,5 @@ FreeSimpleGUI==5.2.0.post1
 pygame==2.6.1
 azure-cognitiveservices-speech==1.41.1
 gTTS==2.4.0
+pytest==7.4.3
+pytest-cov==4.1.0

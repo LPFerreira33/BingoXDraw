@@ -94,6 +94,23 @@ python bingo_ui.py
 Or execute the `bingo_ui_nb.ipynb` notebook.
 
 
+## 🧪 Testing
+
+The project includes comprehensive unit tests and edge case tests using pytest.
+
+### Run Tests
+```shell
+pytest tests/
+```
+
+### Run Tests with Coverage Report
+To run tests with coverage analysis:
+```shell
+coverage run -m pytest tests/
+coverage report -m
+```
+
+
 ### 🖼️ UI Example of Withdrawing a Number
 
 <img src="./readme_images/BingoXDraw_ui.png" alt="BingoXDraw_ui" style="max-width: 50%;"/>
