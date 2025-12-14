@@ -86,7 +86,13 @@ if __name__ == "__main__":
                     # Retrieve the selected language information
                     language_info = voice_languages[values["-VoiceLanguage-"]]
                     withdraw_text = language_info["text"]
+                    
+                    # Construct the text to be spoken (e.g., "Withdrawn number 25!")
                     withdrawn_number_text = f"{withdraw_text} {withdrawn_number}!"
+
+                    # Append a string with each digit followed by an exclamation mark for clarity
+                    divided_num_str = "".join([f" {digit}!" for digit in str(withdrawn_number)])
+                    withdrawn_number_text += f"{divided_num_str}"
 
                     # Use the selected TTS provider
                     if values["-UseTTSAzure-"] and use_azure:
